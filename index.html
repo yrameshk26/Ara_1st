@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join us to celebrate Aradhya's 1st Birthday on January 31, 2026">
+    <title>Aradhya's 1st Birthday Celebration 🎂</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❄️</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#a5d8ff',
+                        secondary: '#74c0fc',
+                        accent: '#d0ebff',
+                        winter: '#f1f9ff',
+                        ice: '#e7f5ff',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.5);
+            }
+        }
+    </style>
+    
+    <!-- Winter Wonderland Animations -->
+    <style>
+        /* Snowflake falling animation */
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-10vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes sway {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(50px);
+            }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .snowflake {
+            position: fixed;
+            top: -10vh;
+            color: #74c0fc;
+            font-size: 2em;
+            pointer-events: none;
+            z-index: 1000;
+            animation: snowfall linear infinite, sway ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(116, 192, 252, 0.9), 0 0 5px rgba(255, 255, 255, 1);
+            filter: drop-shadow(0 0 8px rgba(116, 192, 252, 0.8));
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 2s infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(116, 192, 252, 0.8);
+        }
+        
+        /* Cursor sparkle trail */
+        @keyframes cursorSparkle {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0);
+            }
+        }
+        
+        .cursor-sparkle {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: cursorSparkle 0.8s ease-out forwards;
+        }
+        
+        .cursor-sparkle::before {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            filter: drop-shadow(0 0 5px rgba(116, 192, 252, 0.8));
+        }
+        
+        .cursor-sparkle.star::before {
+            content: '⭐';
+        }
+        
+        .cursor-sparkle.snow::before {
+            content: '❄️';
+        }
+        
+        .cursor-sparkle.heart::before {
+            content: '💙';
+        }
+        
+        /* Winter shimmer effect on hero */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+        
+        .winter-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .winter-shimmer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            animation: shimmer 3s infinite;
+        }
+    </style>
+</head>
+<body class="bg-cream font-sans antialiased">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-md z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo/Title -->
+                <div class="text-xl md:text-2xl font-bold text-blue-600">
+                    Ara's 1st Birthday ❄️
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium">Home</a>
+                    <a href="#details" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium">Details</a>
+                    <a href="#gallery" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium">Gallery</a>
+                    <a href="#rsvp" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium">RSVP</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-lg p-2" aria-label="Toggle menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3">
+                <a href="#home" class="block text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg transition-colors duration-300">Home</a>
+                <a href="#details" class="block text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg transition-colors duration-300">Details</a>
+                <a href="#gallery" class="block text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg transition-colors duration-300">Gallery</a>
+                <a href="#rsvp" class="block text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg transition-colors duration-300">RSVP</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 pb-12 px-4 relative overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="images/ara1.jpg" alt="Aradhya" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/60 via-cyan-600/55 to-blue-700/65"></div>
+        </div>
+        
+        <div class="container mx-auto text-center relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <!-- Decorative Elements -->
+                <div class="mt-8 mb-6 flex justify-center relative z-[100]">
+                    <img src="images/cupcake.png" alt="Birthday Cupcake" class="w-48 h-48 md:w-64 md:h-64 object-contain animate-bounce">
+                </div>
+                
+                <!-- Main Heading -->
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 text-shadow-lg">
+                    Aradhya Turns ONE
+                </h1>
+                
+                <!-- Subheading -->
+                <p class="text-2xl md:text-3xl text-white/95 mb-8 font-light">
+                    Join us to celebrate Ara's 1st Birthday
+                </p>
+                
+                <!-- Countdown Timer -->
+                <div id="countdown" class="mb-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 max-w-2xl mx-auto">
+                    <p class="text-lg md:text-xl text-gray-600 mb-4">Celebration starts in:</p>
+                    <div class="grid grid-cols-4 gap-2 md:gap-4">
+                        <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl p-3 md:p-4 text-white">
+                            <div id="days" class="text-3xl md:text-4xl font-bold">00</div>
+                            <div class="text-xs md:text-sm">Days</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl p-3 md:p-4 text-white">
+                            <div id="hours" class="text-3xl md:text-4xl font-bold">00</div>
+                            <div class="text-xs md:text-sm">Hours</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl p-3 md:p-4 text-white">
+                            <div id="minutes" class="text-3xl md:text-4xl font-bold">00</div>
+                            <div class="text-xs md:text-sm">Minutes</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl p-3 md:p-4 text-white">
+                            <div id="seconds" class="text-3xl md:text-4xl font-bold">00</div>
+                            <div class="text-xs md:text-sm">Seconds</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Decorative Emojis -->
+                <div class="text-4xl md:text-5xl space-x-3 mb-8">
+                    ❄️ ⛄ 🎁 ✨ 🌨️
+                </div>
+                
+                <!-- CTA Button -->
+                <a href="#rsvp" class="inline-block bg-gradient-to-r from-blue-500 to-cyan-600 text-white text-lg md:text-xl font-semibold px-8 md:px-12 py-4 md:py-5 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transform transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-400">
+                    RSVP Now ❄️
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Event Details Section -->
+    <section id="details" class="py-16 md:py-24 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-blue-600 mb-4">Event Details</h2>
+                <p class="text-lg md:text-xl text-gray-600">Mark your calendars! 📅</p>
+            </div>
+            
+            <!-- Details Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12">
+                <!-- Date & Time Card -->
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-start">
+                        <div class="text-4xl md:text-5xl mr-4 md:mr-6">📅</div>
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-2">Date & Time</h3>
+                            <p class="text-gray-700 text-lg mb-1"><strong>Saturday, January 31, 2026</strong></p>
+                            <p class="text-gray-600">11:00 AM - 3:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Venue Card -->
+                <div class="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex items-start">
+                        <div class="text-4xl md:text-5xl mr-4 md:mr-6">📍</div>
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-2">Venue</h3>
+                            <p class="text-gray-700 font-semibold mb-1">Pickering Event Centre</p>
+                            <p class="text-gray-600 text-sm md:text-base">1755 Pickering Pkwy Unit C4</p>
+                            <p class="text-gray-600 text-sm md:text-base">Pickering, ON L1V 6K5, Canada</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Map & Gift Message Row -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <!-- Map Button Card -->
+                <div class="bg-gradient-to-br from-sky-50 to-blue-100 rounded-2xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-center">
+                        <div class="text-4xl md:text-5xl mb-4">🗺️</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">Get Directions</h3>
+                        <a href="https://www.google.com/maps/search/?api=1&query=1755+Pickering+Pkwy+Unit+C4+Pickering+ON+L1V+6K5+Canada" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-block bg-blue-600 text-white font-semibold px-6 md:px-8 py-3 md:py-4 rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-400">
+                            Open in Google Maps
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Gift Message Card -->
+                <div class="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-center">
+                        <div class="text-4xl md:text-5xl mb-4">💛</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3">A Special Note</h3>
+                        <p class="text-lg md:text-xl text-gray-700 font-medium leading-relaxed">
+                            No gifts required — your presence is our present 💛
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 md:py-24 px-4 bg-gradient-to-b from-white to-blue-50">
+        <div class="container mx-auto max-w-6xl">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-blue-600 mb-4">Ara's Photo Gallery</h2>
+                <p class="text-lg md:text-xl text-gray-600">Recent photoshoot moments 📸</p>
+            </div>
+            
+            <!-- Photo Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+                <!-- Photo 1 -->
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square bg-gradient-to-br from-blue-200 to-cyan-200 cursor-pointer" data-index="0">
+                    <img src="images/ara1.jpg" 
+                         alt="Aradhya's photo 1" 
+                         loading="lazy"
+                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <!-- Photo 2 -->
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square bg-gradient-to-br from-cyan-200 to-blue-200 cursor-pointer" data-index="1">
+                    <img src="images/ara2.jpg" 
+                         alt="Aradhya's photo 2" 
+                         loading="lazy"
+                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <!-- Photo 3 -->
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square bg-gradient-to-br from-blue-200 to-sky-200 cursor-pointer" data-index="2">
+                    <img src="images/ara3.jpg" 
+                         alt="Aradhya's photo 3" 
+                         loading="lazy"
+                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <!-- Photo 4 -->
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square bg-gradient-to-br from-sky-200 to-blue-200 cursor-pointer" data-index="3">
+                    <img src="images/ara4.jpg" 
+                         alt="Aradhya's photo 4" 
+                         loading="lazy"
+                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <!-- Photo 5 -->
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square bg-gradient-to-br from-cyan-200 to-blue-300 cursor-pointer" data-index="4">
+                    <img src="images/ara5.jpg" 
+                         alt="Aradhya's photo 5" 
+                         loading="lazy"
+                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <!-- Photo 6 -->
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square bg-gradient-to-br from-blue-300 to-cyan-200 cursor-pointer" data-index="5">
+                    <img src="images/ara6.jpg" 
+                         alt="Aradhya's photo 6" 
+                         loading="lazy"
+                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <!-- Photo 7 -->
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square bg-gradient-to-br from-blue-200 to-indigo-200 cursor-pointer" data-index="6">
+                    <img src="images/ara7.jpg" 
+                         alt="Aradhya's photo 7" 
+                         loading="lazy"
+                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <!-- Photo 8 -->
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square bg-gradient-to-br from-indigo-200 to-blue-200 cursor-pointer" data-index="7">
+                    <img src="images/ara8.jpg" 
+                         alt="Aradhya's photo 8" 
+                         loading="lazy"
+                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <!-- Photo 9 -->
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square bg-gradient-to-br from-sky-200 to-cyan-200 cursor-pointer" data-index="8">
+                    <img src="images/ara9.jpg" 
+                         alt="Aradhya's photo 9" 
+                         loading="lazy"
+                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <!-- Photo 10 -->
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square bg-gradient-to-br from-cyan-200 to-sky-200 cursor-pointer" data-index="9">
+                    <img src="images/ara10.jpg" 
+                         alt="Aradhya's photo 10" 
+                         loading="lazy"
+                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <!-- Photo 11 -->
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square bg-gradient-to-br from-blue-200 to-cyan-300 cursor-pointer" data-index="10">
+                    <img src="images/ara11.jpg" 
+                         alt="Aradhya's photo 11" 
+                         loading="lazy"
+                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <!-- Photo 12 -->
+                <div class="group relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square bg-gradient-to-br from-cyan-300 to-blue-200 cursor-pointer" data-index="11">
+                    <img src="images/ara12.jpg" 
+                         alt="Aradhya's photo 12" 
+                         loading="lazy"
+                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- RSVP Form Section -->
+    <section id="rsvp" class="py-16 md:py-24 px-4 bg-white">
+        <div class="container mx-auto max-w-3xl">
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-blue-600 mb-4">RSVP</h2>
+                <p class="text-lg md:text-xl text-gray-600">We'd love to see you there! 💕</p>
+                <p class="text-base text-gray-500 mt-2">Please let us know if you can make it</p>
+            </div>
+            
+            <!-- RSVP Form -->
+            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl shadow-2xl p-6 md:p-10">
+                <form id="rsvp-form" class="space-y-6">
+                    <!-- Full Name -->
+                    <div>
+                        <label for="name" class="block text-gray-700 font-semibold mb-2 text-sm md:text-base">
+                            Full Name <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required 
+                            class="w-full px-4 py-3 md:py-4 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-300 text-base md:text-lg"
+                            placeholder="Enter your full name">
+                    </div>
+                    
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-gray-700 font-semibold mb-2 text-sm md:text-base">
+                            Email Address <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required 
+                            class="w-full px-4 py-3 md:py-4 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-300 text-base md:text-lg"
+                            placeholder="your.email@example.com">
+                    </div>
+                    
+                    <!-- Phone Number -->
+                    <div>
+                        <label for="phone" class="block text-gray-700 font-semibold mb-2 text-sm md:text-base">
+                            Phone Number (Optional)
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            class="w-full px-4 py-3 md:py-4 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-300 text-base md:text-lg"
+                            placeholder="+1 (123) 456-7890">
+                    </div>
+                    
+                    <!-- Attendance -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-3 text-sm md:text-base">
+                            Will you attend? <span class="text-red-500">*</span>
+                        </label>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <label class="flex items-center space-x-3 bg-white px-6 py-4 rounded-xl border-2 border-gray-300 cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all duration-300 flex-1">
+                                <input 
+                                    type="radio" 
+                                    id="attend-yes" 
+                                    name="attendance" 
+                                    value="Yes" 
+                                    required 
+                                    class="w-5 h-5 text-blue-600 focus:ring-2 focus:ring-blue-400">
+                                <span class="text-base md:text-lg font-medium text-gray-700">✅ Yes, I'll be there!</span>
+                            </label>
+                            <label class="flex items-center space-x-3 bg-white px-6 py-4 rounded-xl border-2 border-gray-300 cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all duration-300 flex-1">
+                                <input 
+                                    type="radio" 
+                                    id="attend-no" 
+                                    name="attendance" 
+                                    value="No" 
+                                    required 
+                                    class="w-5 h-5 text-blue-600 focus:ring-2 focus:ring-blue-400">
+                                <span class="text-base md:text-lg font-medium text-gray-700">❌ Sorry, can't make it</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Number of Guests -->
+                    <div id="guests-field">
+                        <label for="guests" class="block text-gray-700 font-semibold mb-2 text-sm md:text-base">
+                            Number of Guests (including yourself)
+                        </label>
+                        <select 
+                            id="guests" 
+                            name="guests" 
+                            class="w-full px-4 py-3 md:py-4 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-300 text-base md:text-lg bg-white">
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5">5 Guests</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Number of Kids -->
+                    <div id="kids-field" class="hidden">
+                        <label for="kids" class="block text-gray-700 font-semibold mb-2 text-sm md:text-base">
+                            Number of Kids (Optional)
+                        </label>
+                        <select 
+                            id="kids" 
+                            name="kids" 
+                            class="w-full px-4 py-3 md:py-4 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-300 text-base md:text-lg bg-white">
+                            <option value="0">No Kids</option>
+                            <option value="1">1 Kid</option>
+                            <option value="2">2 Kids</option>
+                            <option value="3">3 Kids</option>
+                            <option value="4">4 Kids</option>
+                            <option value="5">5 Kids</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Kids Ages -->
+                    <div id="kids-ages-field" class="hidden">
+                        <label class="block text-gray-700 font-semibold mb-3 text-sm md:text-base">
+                            Ages of Kids
+                        </label>
+                        <div id="kids-ages-container" class="space-y-3">
+                            <!-- Dynamic kid age inputs will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Message -->
+                    <div>
+                        <label for="message" class="block text-gray-700 font-semibold mb-2 text-sm md:text-base">
+                            Any Message or Note (Optional)
+                        </label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            rows="4" 
+                            class="w-full px-4 py-3 md:py-4 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-300 resize-none text-base md:text-lg"
+                            placeholder="Share your wishes for Ara..."></textarea>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="pt-4">
+                        <button 
+                            type="submit" 
+                            id="submit-btn"
+                            class="w-full bg-gradient-to-r from-blue-500 to-cyan-600 text-white text-lg md:text-xl font-bold py-4 md:py-5 rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transform transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100">
+                            <span id="submit-text">Submit RSVP ❄️</span>
+                            <span id="loading-text" class="hidden">Submitting... ⏳</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Success Message -->
+                    <div id="success-message" class="hidden bg-green-100 border-2 border-green-400 text-green-800 px-6 py-4 rounded-xl text-center">
+                        <p class="font-semibold text-lg">🎉 Thank you for your RSVP!</p>
+                        <p class="text-sm mt-1">We can't wait to celebrate with you!</p>
+                    </div>
+                    
+                    <!-- Error Message -->
+                    <div id="error-message" class="hidden bg-red-100 border-2 border-red-400 text-red-800 px-6 py-4 rounded-xl text-center">
+                        <p class="font-semibold">❌ Oops! Something went wrong.</p>
+                        <p class="text-sm mt-1">Please try again or contact us directly.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-blue-600 to-cyan-700 text-white py-12 px-4">
+        <div class="container mx-auto max-w-4xl text-center">
+            <!-- Thank You Message -->
+            <div class="mb-6">
+                <p class="text-2xl md:text-3xl font-bold mb-3">
+                    We can't wait to celebrate with you 💕
+                </p>
+                <p class="text-lg md:text-xl opacity-90">
+                    Saturday, January 31, 2026
+                </p>
+            </div>
+            
+            <!-- Decorative Divider -->
+            <div class="flex items-center justify-center space-x-4 my-8">
+                <div class="h-0.5 w-16 bg-white/30"></div>
+                <span class="text-3xl">❄️</span>
+                <div class="h-0.5 w-16 bg-white/30"></div>
+            </div>
+            
+            <!-- Copyright -->
+            <p class="text-sm opacity-75">
+                © 2026 Aradhya's 1st Birthday Celebration | Made with love
+            </p>
+        </div>
+    </footer>
+    
+    <!-- Background Music -->
+    <audio id="bg-music" loop autoplay>
+        <source src="music/birthday-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <!-- Music Control Button (Hidden by default) -->
+    <button id="music-toggle" class="hidden fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-cyan-600 text-white w-16 h-16 rounded-full shadow-2xl hover:shadow-xl hover:scale-110 transform transition-all duration-300 z-[1001] items-center justify-center focus:outline-none focus:ring-4 focus:ring-blue-400" aria-label="Toggle music">
+        <span id="music-icon" class="text-3xl">🔊</span>
+    </button>
+    
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center p-4">
+        <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl hover:text-blue-400 transition-colors duration-300 z-10 w-12 h-12 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-lg" aria-label="Close lightbox">
+            &times;
+        </button>
+        
+        <!-- Image Counter -->
+        <div id="lightbox-counter" class="absolute top-4 left-4 text-white text-lg md:text-xl font-semibold bg-black/50 px-4 py-2 rounded-lg">
+            1 / 12
+        </div>
+        
+        <!-- Previous Button -->
+        <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-5xl hover:text-blue-400 transition-colors duration-300 w-16 h-16 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-lg bg-black/30 hover:bg-black/50" aria-label="Previous image">
+            &#8249;
+        </button>
+        
+        <!-- Next Button -->
+        <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-5xl hover:text-blue-400 transition-colors duration-300 w-16 h-16 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-lg bg-black/30 hover:bg-black/50" aria-label="Next image">
+            &#8250;
+        </button>
+        
+        <!-- Image Container -->
+        <div class="max-w-7xl max-h-full flex items-center justify-center">
+            <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
