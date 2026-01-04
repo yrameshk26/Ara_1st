@@ -970,9 +970,6 @@ function createSparkle(container) {
 
 // Initialize winter effects
 function initWinterEffects() {
-    // Only run for Winter Wonderland theme
-    if (ACTIVE_THEME !== 'theme1') return;
-    
     // Create initial snowflakes (reduced for performance)
     for (let i = 0; i < 10; i++) {
         setTimeout(() => createSnowflake(), i * 300);
@@ -980,7 +977,7 @@ function initWinterEffects() {
     
     // Continuously create snowflakes (less frequent)
     setInterval(() => {
-        if (ACTIVE_THEME === 'theme1' && document.querySelectorAll('.snowflake').length < 15) {
+        if (document.querySelectorAll('.snowflake').length < 15) {
             createSnowflake();
         }
     }, 1500);
@@ -989,32 +986,13 @@ function initWinterEffects() {
     const heroSection = document.getElementById('home');
     if (heroSection) {
         setInterval(() => {
-            if (ACTIVE_THEME === 'theme1') {
-                createSparkle(heroSection);
-            }
+            createSparkle(heroSection);
         }, 300);
     }
 }
 
-// Start theme effects after page load
-if (document.readyState === 'loading') {
-    window.addEventListener('DOMContentLoaded', () => {
-        const theme = THEMES[ACTIVE_THEME];
-        if (theme.effects === 'snowflakes') initWinterEffects();
-    });
-} else {
-    // DOM is already loaded
-    const theme = THEMES[ACTIVE_THEME];
-    if (theme.effects === 'snowflakes') initWinterEffects();
-}
-
-// Also try on window load as backup
-window.addEventListener('load', () => {
-    const theme = THEMES[ACTIVE_THEME];
-    if (theme.effects === 'snowflakes' && document.querySelectorAll('.snowflake').length === 0) {
-        initWinterEffects();
-    }
-});
+// Start theme effects after page load - removed duplicate initialization
+// Effects are now handled by applyTheme() function
 
 // ============================================
 // CURSOR SPARKLE TRAIL EFFECT
