@@ -12,7 +12,7 @@ const THEMES = {
     theme1: {
         name: 'Winter Wonderland',
         bodyClass: 'theme-winter',
-        fontFamily: 'Poppins',
+        fontFamily: 'Pacifico',
         primary: '#74c0fc',
         primaryLight: '#a5d8ff',
         primaryDark: '#4dabf7',
