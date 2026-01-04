@@ -241,7 +241,7 @@ function applyThemeEffects(theme) {
     // Apply theme-specific effects
     switch(theme.effects) {
         case 'snowflakes':
-            // Snowflakes are handled by initWinterEffects() below
+            initWinterEffects();
             break;
         case 'confetti':
             initConfettiEffect();
