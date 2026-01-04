@@ -12,7 +12,7 @@ const THEMES = {
     theme1: {
         name: 'Winter Wonderland',
         bodyClass: 'theme-winter',
-        fontFamily: 'Inter',
+        fontFamily: 'Raleway',
         primary: '#74c0fc',
         primaryLight: '#a5d8ff',
         primaryDark: '#4dabf7',
@@ -423,16 +423,17 @@ function updateKidsOptions(numGuests) {
     const currentKidsValue = parseInt(kidsSelect.value) || 0;
     kidsSelect.innerHTML = '';
     
-    // Add options from 0 to numGuests
-    for (let i = 0; i <= numGuests; i++) {
+    // Add options from 0 to 5 (max kids allowed)
+    const maxKids = Math.min(numGuests, 5);
+    for (let i = 0; i <= maxKids; i++) {
         const option = document.createElement('option');
         option.value = i;
         option.textContent = i === 0 ? 'No Kids' : (i === 1 ? '1 Kid' : `${i} Kids`);
         kidsSelect.appendChild(option);
     }
     
-    // Reset kids value if it exceeds new guest count
-    if (currentKidsValue > numGuests) {
+    // Reset kids value if it exceeds max allowed
+    if (currentKidsValue > maxKids) {
         kidsSelect.value = 0;
         kidsAgesField.classList.add('hidden');
         kidsAgesContainer.innerHTML = '';
@@ -1064,7 +1065,7 @@ let hasTriedAutoplay = false;
 function startMusic() {
     if (!hasTriedAutoplay) {
         hasTriedAutoplay = true;
-        bgMusic.volume = 0.5;
+        bgMusic.volume = 0.15;
         bgMusic.play().then(() => {
             isMusicPlaying = true;
             musicIcon.textContent = '🔊';
@@ -1090,7 +1091,7 @@ document.addEventListener('keydown', startOnInteraction, { once: true });
 
 // Also try on page load
 window.addEventListener('load', () => {
-    bgMusic.volume = 0.5;
+    bgMusic.volume = 0.15;
     
     // Try to autoplay
     bgMusic.play().then(() => {
@@ -1113,7 +1114,7 @@ musicToggle.addEventListener('click', (e) => {
         musicIcon.textContent = '🔇';
         isMusicPlaying = false;
     } else {
-        bgMusic.volume = 0.5;
+        bgMusic.volume = 0.15;
         bgMusic.play().then(() => {
             musicIcon.textContent = '🔊';
             isMusicPlaying = true;
