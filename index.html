@@ -26,7 +26,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&family=Pacifico&family=Dancing+Script:wght@400;600;700&family=Caveat:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700;800&family=Euphoria+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@300;400;500;600;700&family=Poppins:wght@600;700&family=Playfair+Display:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&family=Pacifico&family=Dancing+Script:wght@400;600;700&family=Caveat:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700;800&family=Euphoria+Script&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -44,7 +44,8 @@
                         ice: '#e7f5ff',
                     },
                     fontFamily: {
-                        sans: ['Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        heading: ['Quicksand', 'system-ui', '-apple-system', 'sans-serif'],
                     }
                 }
             }
@@ -52,6 +53,18 @@
     </script>
     
     <style type="text/tailwindcss">
+        @layer base {
+            * {
+                font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+            }
+            body {
+                font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                font-family: 'Quicksand', system-ui, -apple-system, sans-serif !important;
+                font-weight: 600 !important;
+            }
+        }
         @layer utilities {
             .text-shadow {
                 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
