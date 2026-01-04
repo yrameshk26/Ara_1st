@@ -11,53 +11,83 @@ const ACTIVE_THEME = 'theme1';
 const THEMES = {
     theme1: {
         name: 'Winter Wonderland',
+        bodyClass: 'theme-winter',
+        fontFamily: 'Poppins',
         primary: '#74c0fc',
         primaryLight: '#a5d8ff',
         primaryDark: '#4dabf7',
         accent: '#22d3ee',
         gradient: 'from-blue-600 via-cyan-600 to-blue-700',
         buttonGradient: 'from-blue-500 to-cyan-500',
+        cardStyle: 'rounded-2xl shadow-xl',
+        buttonStyle: 'rounded-full',
+        headingStyle: 'font-bold',
+        effects: 'snowflakes',
         icon: '❄️'
     },
     theme2: {
-        name: 'Soft Blush',
+        name: 'Princess Palace',
+        bodyClass: 'theme-princess',
+        fontFamily: 'Playfair Display',
         primary: '#faa2c1',
         primaryLight: '#fcc2d7',
         primaryDark: '#f783ac',
         accent: '#fb6f92',
         gradient: 'from-pink-400 via-rose-400 to-pink-500',
         buttonGradient: 'from-pink-400 to-rose-400',
-        icon: '🌸'
+        cardStyle: 'rounded-3xl shadow-2xl ornate-border',
+        buttonStyle: 'rounded-full',
+        headingStyle: 'font-bold italic',
+        effects: 'crowns',
+        icon: '👑'
     },
     theme3: {
-        name: 'Modern Sage',
+        name: 'Minimalist Zen',
+        bodyClass: 'theme-zen',
+        fontFamily: 'Inter',
         primary: '#74c69d',
         primaryLight: '#95d5b2',
         primaryDark: '#52b788',
         accent: '#40916c',
         gradient: 'from-green-400 via-emerald-400 to-green-500',
         buttonGradient: 'from-green-400 to-emerald-400',
-        icon: '🌿'
+        cardStyle: 'rounded-none shadow-sm border-2',
+        buttonStyle: 'rounded-none',
+        headingStyle: 'font-semibold tracking-wide zen-line',
+        effects: 'zen',
+        icon: '🎋'
     },
     theme4: {
-        name: 'Sunset Peach',
+        name: 'Playful Carnival',
+        bodyClass: 'theme-carnival',
+        fontFamily: 'Fredoka',
         primary: '#ffd6a5',
         primaryLight: '#ffedcc',
         primaryDark: '#ffbe7c',
         accent: '#ff9e6d',
         gradient: 'from-orange-300 via-amber-300 to-orange-400',
         buttonGradient: 'from-orange-400 to-amber-400',
-        icon: '🍑'
+        cardStyle: 'rounded-3xl chunky-border',
+        buttonStyle: 'rounded-full',
+        headingStyle: 'font-bold',
+        effects: 'confetti',
+        icon: '🎪'
     },
     theme5: {
-        name: 'Lavender Dreams',
+        name: 'Garden Fairy',
+        bodyClass: 'theme-fairy',
+        fontFamily: 'Pacifico',
         primary: '#bdb2ff',
         primaryLight: '#c8b6ff',
         primaryDark: '#a89fff',
         accent: '#9d8dff',
         gradient: 'from-purple-400 via-violet-400 to-purple-500',
         buttonGradient: 'from-purple-400 to-violet-400',
-        icon: '💜'
+        cardStyle: 'organic-shape shadow-lg',
+        buttonStyle: 'rounded-full',
+        headingStyle: 'font-normal',
+        effects: 'petals',
+        icon: '🌸'
     }
 };
 
@@ -66,6 +96,16 @@ function applyTheme() {
     const theme = THEMES[ACTIVE_THEME];
     const root = document.documentElement;
     const colorName = getThemeColorName();
+    const body = document.body;
+    
+    // Remove all theme classes
+    body.classList.remove('theme-winter', 'theme-princess', 'theme-zen', 'theme-carnival', 'theme-fairy');
+    
+    // Add current theme class
+    body.classList.add(theme.bodyClass);
+    
+    // Set font family
+    body.style.fontFamily = `'${theme.fontFamily}', sans-serif`;
     
     // Set CSS custom properties
     root.style.setProperty('--theme-primary', theme.primary);
@@ -73,95 +113,181 @@ function applyTheme() {
     root.style.setProperty('--theme-primary-dark', theme.primaryDark);
     root.style.setProperty('--theme-accent', theme.accent);
     
-    // Update all blue color classes to theme color
-    const colorPattern = /(blue|pink|green|orange|purple)/g;
+    // Update all color classes
+    updateColorClasses(colorName, theme);
     
+    // Update card styles
+    updateCardStyles(theme);
+    
+    // Update button styles
+    updateButtonStyles(theme, colorName);
+    
+    // Update heading styles
+    updateHeadingStyles(theme);
+    
+    // Apply theme-specific effects
+    applyThemeEffects(theme);
+    
+    // Update gradients
+    updateGradients(theme);
+    
+    console.log(`✨ Theme applied: ${theme.name} ${theme.icon}`);
+}
+
+function updateColorClasses(colorName, theme) {
     // Update text colors
-    document.querySelectorAll('[class*="text-blue-"]').forEach(el => {
-        el.className = el.className.replace(/text-blue-(\d+)/g, `text-${colorName}-$1`);
+    document.querySelectorAll('[class*="text-blue-"], [class*="text-pink-"], [class*="text-green-"], [class*="text-orange-"], [class*="text-purple-"]').forEach(el => {
+        el.className = el.className.replace(/text-(blue|pink|green|orange|purple)-(\d+)/g, `text-${colorName}-$2`);
     });
     
     // Update background colors
-    document.querySelectorAll('[class*="bg-blue-"]').forEach(el => {
-        el.className = el.className.replace(/bg-blue-(\d+)/g, `bg-${colorName}-$1`);
+    document.querySelectorAll('[class*="bg-blue-"], [class*="bg-pink-"], [class*="bg-green-"], [class*="bg-orange-"], [class*="bg-purple-"]').forEach(el => {
+        el.className = el.className.replace(/bg-(blue|pink|green|orange|purple)-(\d+)/g, `bg-${colorName}-$2`);
     });
     
     // Update border colors
-    document.querySelectorAll('[class*="border-blue-"]').forEach(el => {
-        el.className = el.className.replace(/border-blue-(\d+)/g, `border-${colorName}-$1`);
+    document.querySelectorAll('[class*="border-blue-"], [class*="border-pink-"], [class*="border-green-"], [class*="border-orange-"], [class*="border-purple-"]').forEach(el => {
+        el.className = el.className.replace(/border-(blue|pink|green|orange|purple)-(\d+)/g, `border-${colorName}-$2`);
     });
     
     // Update ring colors
-    document.querySelectorAll('[class*="ring-blue-"]').forEach(el => {
-        el.className = el.className.replace(/ring-blue-(\d+)/g, `ring-${colorName}-$1`);
+    document.querySelectorAll('[class*="ring-blue-"], [class*="ring-pink-"], [class*="ring-green-"], [class*="ring-orange-"], [class*="ring-purple-"]').forEach(el => {
+        el.className = el.className.replace(/ring-(blue|pink|green|orange|purple)-(\d+)/g, `ring-${colorName}-$2`);
     });
     
     // Update focus colors
-    document.querySelectorAll('[class*="focus:border-blue-"]').forEach(el => {
-        el.className = el.className.replace(/focus:border-blue-(\d+)/g, `focus:border-${colorName}-$1`);
-    });
-    
-    document.querySelectorAll('[class*="focus:ring-blue-"]').forEach(el => {
-        el.className = el.className.replace(/focus:ring-blue-(\d+)/g, `focus:ring-${colorName}-$1`);
+    document.querySelectorAll('[class*="focus:border-"], [class*="focus:ring-"]').forEach(el => {
+        el.className = el.className.replace(/focus:border-(blue|pink|green|orange|purple)-(\d+)/g, `focus:border-${colorName}-$2`);
+        el.className = el.className.replace(/focus:ring-(blue|pink|green|orange|purple)-(\d+)/g, `focus:ring-${colorName}-$2`);
     });
     
     // Update hover colors
-    document.querySelectorAll('[class*="hover:text-blue-"]').forEach(el => {
-        el.className = el.className.replace(/hover:text-blue-(\d+)/g, `hover:text-${colorName}-$1`);
+    document.querySelectorAll('[class*="hover:text-"], [class*="hover:bg-"]').forEach(el => {
+        el.className = el.className.replace(/hover:text-(blue|pink|green|orange|purple)-(\d+)/g, `hover:text-${colorName}-$2`);
+        el.className = el.className.replace(/hover:bg-(blue|pink|green|orange|purple)-(\d+)/g, `hover:bg-${colorName}-$2`);
     });
-    
-    // Update gradients in hero section
+}
+
+function updateCardStyles(theme) {
+    // Update all card elements
+    const cards = document.querySelectorAll('.bg-white\\/80, .bg-white, section > div > div');
+    cards.forEach(card => {
+        if (card.classList.contains('bg-white') || card.classList.contains('bg-white/80')) {
+            // Remove old styles
+            card.className = card.className.replace(/rounded-\w+/g, '');
+            card.className = card.className.replace(/shadow-\w+/g, '');
+            card.className = card.className.replace(/border-\d+/g, '');
+            card.className = card.className.replace(/ornate-border|chunky-border|organic-shape/g, '');
+            
+            // Add theme card style
+            card.className += ' ' + theme.cardStyle;
+        }
+    });
+}
+
+function updateButtonStyles(theme, colorName) {
+    // Update all buttons
+    const buttons = document.querySelectorAll('button, a[class*="bg-gradient"]');
+    buttons.forEach(btn => {
+        // Remove old rounded styles
+        btn.className = btn.className.replace(/rounded-\w+/g, '');
+        // Add theme button style
+        if (!btn.className.includes('rounded-')) {
+            btn.className += ' ' + theme.buttonStyle;
+        }
+        
+        // Update gradient buttons
+        if (btn.className.includes('from-')) {
+            btn.className = btn.className.replace(/from-\w+-\d+\s+to-\w+-\d+/g, theme.buttonGradient);
+            btn.className = btn.className.replace(/focus:ring-\w+-\d+/g, `focus:ring-${colorName}-400`);
+        }
+    });
+}
+
+function updateHeadingStyles(theme) {
+    // Update all headings
+    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    headings.forEach(heading => {
+        // Remove old styles
+        heading.className = heading.className.replace(/font-\w+|tracking-\w+|italic|zen-line/g, '');
+        // Add theme heading style
+        heading.className += ' ' + theme.headingStyle;
+    });
+}
+
+function updateGradients(theme) {
+    // Update hero overlay gradient
     const heroOverlay = document.querySelector('#home .absolute.inset-0');
     if (heroOverlay) {
+        const gradientParts = theme.gradient.split(' ');
+        const colorBase = gradientParts[0].split('-')[1]; // e.g., 'blue' from 'from-blue-600'
         heroOverlay.className = heroOverlay.className.replace(
             /from-\w+-\d+\/\d+\s+via-\w+-\d+\/\d+\s+to-\w+-\d+\/\d+/,
-            theme.gradient.replace(/from-(\w+)-(\d+)\s+via-(\w+)-(\d+)\s+to-(\w+)-(\d+)/, 
-                'from-$1-$2/60 via-$3-$4/55 to-$5-$6/65')
+            `from-${colorBase}-600/60 via-${colorBase}-600/55 to-${colorBase}-700/65`
         );
     }
     
     // Update countdown boxes
     const countdownBoxes = document.querySelectorAll('#countdown > div > div');
     countdownBoxes.forEach((box, index) => {
-        if (index % 2 === 0) {
-            box.className = box.className.replace(
-                /from-\w+-\d+\s+to-\w+-\d+/,
-                theme.buttonGradient.split(' ')[0] + ' ' + theme.buttonGradient.split(' ')[1] + '-600'
-            );
-        } else {
-            box.className = box.className.replace(
-                /from-\w+-\d+\s+to-\w+-\d+/,
-                theme.buttonGradient.replace(/(\w+)-(\d+)/g, (match, color, num) => {
-                    return color === theme.buttonGradient.split('-')[1].split(' ')[0] ? 
-                        `cyan-${num}` : `${color}-${num}`;
-                })
-            );
-        }
+        box.className = box.className.replace(/from-\w+-\d+\s+to-\w+-\d+/g, theme.buttonGradient);
     });
+}
+
+function applyThemeEffects(theme) {
+    // Clear existing effects
+    document.querySelectorAll('.snowflake, .confetti, .petal').forEach(el => el.remove());
     
-    // Update CTA button
-    const ctaButton = document.querySelector('#home a[href="#rsvp"]');
-    if (ctaButton) {
-        ctaButton.className = ctaButton.className.replace(
-            /from-\w+-\d+\s+to-\w+-\d+/,
-            theme.buttonGradient
-        );
-        ctaButton.className = ctaButton.className.replace(
-            /focus:ring-\w+-\d+/,
-            `focus:ring-${colorName}-400`
-        );
+    // Apply theme-specific effects
+    switch(theme.effects) {
+        case 'snowflakes':
+            // Snowflakes are handled by initWinterEffects() below
+            break;
+        case 'confetti':
+            initConfettiEffect();
+            break;
+        case 'petals':
+            initPetalEffect();
+            break;
+        case 'crowns':
+            // Princess crowns handled by CSS
+            break;
+        case 'zen':
+            // Minimalist - no effects
+            break;
     }
-    
-    // Update RSVP submit button
-    const submitBtn = document.getElementById('submit-btn');
-    if (submitBtn) {
-        submitBtn.className = submitBtn.className.replace(
-            /from-\w+-\d+\s+to-\w+-\d+/,
-            theme.buttonGradient
-        );
-    }
-    
-    console.log(`✨ Theme applied: ${theme.name} ${theme.icon}`);
+}
+
+function initConfettiEffect() {
+    const colors = ['#ffd6a5', '#ffbe7c', '#ff9e6d', '#ffedcc'];
+    setInterval(() => {
+        if (document.querySelectorAll('.confetti').length < 15) {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            confetti.style.animationDelay = Math.random() + 's';
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }
+    }, 300);
+}
+
+function initPetalEffect() {
+    const petals = ['🌸', '🌺', '🌼', '🌷'];
+    setInterval(() => {
+        if (document.querySelectorAll('.petal').length < 12) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.textContent = petals[Math.floor(Math.random() * petals.length)];
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = (Math.random() * 5 + 6) + 's';
+            petal.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), 15000);
+        }
+    }, 800);
 }
 
 function getThemeColorName() {
@@ -844,6 +970,9 @@ function createSparkle(container) {
 
 // Initialize winter effects
 function initWinterEffects() {
+    // Only run for Winter Wonderland theme
+    if (ACTIVE_THEME !== 'theme1') return;
+    
     // Create initial snowflakes (reduced for performance)
     for (let i = 0; i < 10; i++) {
         setTimeout(() => createSnowflake(), i * 300);
@@ -851,7 +980,7 @@ function initWinterEffects() {
     
     // Continuously create snowflakes (less frequent)
     setInterval(() => {
-        if (document.querySelectorAll('.snowflake').length < 15) {
+        if (ACTIVE_THEME === 'theme1' && document.querySelectorAll('.snowflake').length < 15) {
             createSnowflake();
         }
     }, 1500);
@@ -860,23 +989,29 @@ function initWinterEffects() {
     const heroSection = document.getElementById('home');
     if (heroSection) {
         setInterval(() => {
-            createSparkle(heroSection);
+            if (ACTIVE_THEME === 'theme1') {
+                createSparkle(heroSection);
+            }
         }, 300);
     }
 }
 
-// Start winter effects after page load
+// Start theme effects after page load
 if (document.readyState === 'loading') {
-    window.addEventListener('DOMContentLoaded', initWinterEffects);
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = THEMES[ACTIVE_THEME];
+        if (theme.effects === 'snowflakes') initWinterEffects();
+    });
 } else {
     // DOM is already loaded
-    initWinterEffects();
+    const theme = THEMES[ACTIVE_THEME];
+    if (theme.effects === 'snowflakes') initWinterEffects();
 }
 
 // Also try on window load as backup
 window.addEventListener('load', () => {
-    // Double check effects are running
-    if (document.querySelectorAll('.snowflake').length === 0) {
+    const theme = THEMES[ACTIVE_THEME];
+    if (theme.effects === 'snowflakes' && document.querySelectorAll('.snowflake').length === 0) {
         initWinterEffects();
     }
 });

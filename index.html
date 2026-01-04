@@ -12,7 +12,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&family=Pacifico&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -187,6 +187,199 @@
                 transparent
             );
             animation: shimmer 3s infinite;
+        }
+        
+        /* ============================================ */
+        /* THEME-SPECIFIC STYLES */
+        /* ============================================ */
+        
+        /* Theme 1: Winter Wonderland - Keep existing animations above */
+        
+        /* Theme 2: Princess Palace */
+        body.theme-princess {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe9f0 100%);
+        }
+        
+        body.theme-princess .ornate-border {
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #f783ac, #faa2c1, #fcc2d7) 1;
+            position: relative;
+        }
+        
+        body.theme-princess .ornate-border::before,
+        body.theme-princess .ornate-border::after {
+            content: '👑';
+            position: absolute;
+            font-size: 2rem;
+            top: -1rem;
+        }
+        
+        body.theme-princess .ornate-border::before {
+            left: -1rem;
+        }
+        
+        body.theme-princess .ornate-border::after {
+            right: -1rem;
+        }
+        
+        @keyframes royal-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        body.theme-princess .floating-crown {
+            animation: royal-float 3s ease-in-out infinite;
+        }
+        
+        @keyframes ribbon-wave {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+        
+        body.theme-princess .ribbon {
+            animation: ribbon-wave 2s ease-in-out infinite;
+        }
+        
+        /* Theme 3: Minimalist Zen */
+        body.theme-zen {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            letter-spacing: 0.02em;
+        }
+        
+        body.theme-zen .zen-line {
+            position: relative;
+        }
+        
+        body.theme-zen .zen-line::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: currentColor;
+        }
+        
+        @keyframes zen-pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        
+        body.theme-zen .zen-element {
+            animation: zen-pulse 4s ease-in-out infinite;
+        }
+        
+        body.theme-zen .geometric-shape {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        
+        /* Theme 4: Playful Carnival */
+        body.theme-carnival {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #fff4e6 0%, #ffe8cc 50%, #ffd9a8 100%);
+        }
+        
+        @keyframes bounce-fun {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(-5deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        body.theme-carnival .bouncy {
+            animation: bounce-fun 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        body.theme-carnival .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10vh;
+            z-index: 1000;
+            pointer-events: none;
+            animation: confetti-fall 3s linear infinite;
+        }
+        
+        body.theme-carnival .chunky-border {
+            border: 6px solid;
+            border-radius: 30px;
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+        
+        body.theme-carnival .wiggle {
+            animation: wiggle 0.5s ease-in-out infinite;
+        }
+        
+        /* Theme 5: Garden Fairy */
+        body.theme-fairy {
+            font-family: 'Pacifico', cursive;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
+        }
+        
+        @keyframes petal-float {
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(110vh) translateX(50px) rotate(360deg); opacity: 0; }
+        }
+        
+        body.theme-fairy .petal {
+            position: fixed;
+            font-size: 2em;
+            top: -10vh;
+            pointer-events: none;
+            z-index: 1000;
+            animation: petal-float 8s linear infinite;
+        }
+        
+        @keyframes fairy-glow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 8px rgba(219, 234, 254, 0.6));
+                transform: scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 20px rgba(147, 197, 253, 0.9));
+                transform: scale(1.05);
+            }
+        }
+        
+        body.theme-fairy .fairy-glow {
+            animation: fairy-glow 3s ease-in-out infinite;
+        }
+        
+        body.theme-fairy .flower-border {
+            position: relative;
+            border: 3px solid;
+            border-radius: 50% 20% 50% 20%;
+            border-image: linear-gradient(45deg, #c8b6ff, #e9d5ff, #f0e5ff) 1;
+        }
+        
+        body.theme-fairy .organic-shape {
+            border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+        }
+        
+        @keyframes flutter {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(5deg); }
+            66% { transform: translateY(-5px) rotate(-5deg); }
+        }
+        
+        body.theme-fairy .flutter {
+            animation: flutter 2s ease-in-out infinite;
         }
     </style>
 </head>
