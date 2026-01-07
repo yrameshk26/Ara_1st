@@ -531,14 +531,24 @@ rsvpForm.addEventListener('submit', async (e) => {
         }
     }
     
+    // Calculate total guests (adults + kids)
+    let totalGuests = 'N/A';
+    let guests = 'N/A';
+    let kids = 'N/A';
+    if (attendance === 'Yes') {
+        guests = parseInt(formData.get('guests') || 0);
+        kids = parseInt(formData.get('kids') || 0);
+        totalGuests = guests + kids;
+    }
     // Prepare data object for SheetDB
     const data = {
         Name: formData.get('name').trim(),
         Email: formData.get('email').trim(),
         Phone: formData.get('phone') ? formData.get('phone').trim() : 'N/A',
         Attendance: attendance,
-        Guests: attendance === 'Yes' ? formData.get('guests') : 'N/A',
-        Kids: attendance === 'Yes' ? formData.get('kids') : 'N/A',
+        Guests: guests,
+        Kids: kids,
+        TotalGuests: totalGuests,
         ...kidsAgesData,
         Message: formData.get('message') ? formData.get('message').trim() : 'No message',
         Timestamp: new Date().toLocaleString('en-US', { 
@@ -1071,6 +1081,12 @@ function startMusic() {
             musicIcon.textContent = '🔊';
             musicToggle.classList.remove('animate-pulse', 'hidden');
             musicToggle.classList.add('flex');
+            // Stop music after 1 minute
+            setTimeout(() => {
+                bgMusic.pause();
+                musicIcon.textContent = '🔇';
+                isMusicPlaying = false;
+            }, 60000);
         }).catch(error => {
             // Autoplay failed, keep button hidden
         });
@@ -1092,7 +1108,6 @@ document.addEventListener('keydown', startOnInteraction, { once: true });
 // Also try on page load
 window.addEventListener('load', () => {
     bgMusic.volume = 0.15;
-    
     // Try to autoplay
     bgMusic.play().then(() => {
         isMusicPlaying = true;
@@ -1100,6 +1115,12 @@ window.addEventListener('load', () => {
         musicToggle.classList.remove('hidden');
         musicToggle.classList.add('flex');
         hasTriedAutoplay = true;
+        // Stop music after 1 minute
+        setTimeout(() => {
+            bgMusic.pause();
+            musicIcon.textContent = '🔇';
+            isMusicPlaying = false;
+        }, 60000);
     }).catch(() => {
         // Autoplay blocked - will start on first interaction
     });
